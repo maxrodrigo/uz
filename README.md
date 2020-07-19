@@ -15,7 +15,7 @@
 Clone from GitHub and source `uz.zsh`.
 
 ```sh
-git clone https://github.com/zplug/zplug ~/.uz
+git clone https://github.com/maxrodrigo/uz.git ~/.uz
 ```
 
 ```zsh

@@ -67,6 +67,22 @@ zadd zsh-users/zsh-completions
 
 ## Uninstall
 
-`μz` only creates folders for the cloned modules and, by default, are self contained into the intallation directory.
+`μz` only creates folders for the cloned modules and, by default, are self contained into the installation directory.
 
 To uninstall remove the installation directory (`$UZ_PATH`) and the modules folder (`$UZ_PLUGIN_PATH`) if applicable.
+
+## Other Notes
+
+### Updating benchmark
+
+
+```sh
+ls -d ${UZ_PLUGIN_PATH}/*/.git
+0.00s user 0.00s system 77% cpu 0.002 total
+
+find $UZ_PLUGIN_PATH -type d -name .git -prune
+0.01s user 0.00s system 95% cpu 0.006 total
+
+find $UZ_PLUGIN_PATH -type d -exec test -e '{}/.git' \; -print0
+0.19s user 0.09s system 100% cpu 0.286 total
+```

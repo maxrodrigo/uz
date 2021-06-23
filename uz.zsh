@@ -16,5 +16,10 @@ zadd() {
   source ${zscripts}
 }
 
+zupdate() {
+  for p in $(ls -d ${UZ_PLUGIN_PATH}/*/.git); do
+    echo -e "\e[1;32m${${p%/*}:t}:\e[0m $(git -C ${p%/*} pull)"
+  done
+}
+
 alias zclean="rm -rf $(echo ${UZ_PLUGINS} $(ls -d ${UZ_PLUGIN_PATH}/*) | tr ' ' '\n' | sort | uniq -u)"
-alias zupdate="find ${UZ_PLUGIN_PATH} -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"

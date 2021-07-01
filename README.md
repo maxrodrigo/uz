@@ -10,6 +10,8 @@
  \_$
 ```
 
+![GitHub file size in bytes](https://img.shields.io/github/size/maxrodrigo/uz/uz.zsh?color=green&label=uz.zsh&logo=uz.zsh%20size&style=flat-square)
+
 ## Installation
 
 Clone from GitHub and source `uz.zsh`.

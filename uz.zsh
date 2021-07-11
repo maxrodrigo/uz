@@ -17,9 +17,9 @@ zadd() {
 }
 
 zupdate() {
-  for p in $(ls -d ${UZ_PLUGIN_PATH}/*/.git); do
+  for p in $(\ls -d ${UZ_PLUGIN_PATH}/*/.git); do
     echo -e "\e[1;32m${${p%/*}:t}:\e[0m $(git -C ${p%/*} pull)"
   done
 }
 
-alias zclean="rm -rf $(echo ${UZ_PLUGINS} $(ls -d ${UZ_PLUGIN_PATH}/*) | tr ' ' '\n' | sort | uniq -u)"
+alias zclean="rm -rf $(echo ${UZ_PLUGINS} $(\ls -d ${UZ_PLUGIN_PATH}/*) | tr ' ' '\n' | sort | uniq -u)"

@@ -3,7 +3,7 @@ typeset UZ_PLUGIN_PATH=${UZ_PLUGIN_PATH:-${UZ_PATH}/plugins}
 typeset -a UZ_PLUGINS
 
 zadd() {
-  local zmodule=${1:t} zurl=${1}
+  local zmodule=${1:t} zurl=${1} zscript=${2}
   local zpath=${UZ_PLUGIN_PATH}/${zmodule}
   UZ_PLUGINS+=(${zpath})
 
@@ -14,8 +14,9 @@ zadd() {
   fi
 
   local zscripts=(${zpath}/(init.zsh|${zmodule:t}.(zsh|plugin.zsh|zsh-theme|sh))(NOL[1]))
-  if [[ -f ${zscripts} ]]; then source ${zscripts}
-  else echo -e "\e[1;31mNo scripts was found for:\e[0m \e[3m${zurl}\e[0m"
+  if    [[ -f ${zpath}/${zscript} ]]; then source ${zpath}/${zscript}
+  elif  [[ -f ${zscripts} ]]; then source ${zscripts}
+  else  echo -e "\e[1;31mNo scripts was found for:\e[0m \e[3m${zurl}\e[0m"
   fi
 }
 

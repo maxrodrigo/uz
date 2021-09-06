@@ -5,7 +5,7 @@ typeset -a UZ_PLUGINS
 zadd() {
   local zmodule=${1:t} zurl=${1} zscript=${2}
   local zpath=${UZ_PLUGIN_PATH}/${zmodule}
-  UZ_PLUGINS+=(${zpath})
+  UZ_PLUGINS+=("${zpath}")
 
   if [[ ! -d ${zpath} ]]; then
     mkdir -p ${zpath}
@@ -27,4 +27,9 @@ zupdate() {
   done
 }
 
-alias zclean="rm -rf $(echo ${UZ_PLUGINS} $(ls -d ${UZ_PLUGIN_PATH}/*) | tr ' ' '\n' | sort | uniq -u)"
+zclean() {
+  for p in $(comm -23 <(ls -1d ${UZ_PLUGIN_PATH}/* | sort) <(printf '%s\n' $UZ_PLUGINS | sort)); do
+    echo -e "\e[1;33mCleaning:\e[0m \e[3m${p}\e[0m"
+    rm -rI $p
+  done
+}

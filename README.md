@@ -35,6 +35,14 @@ Add plugins' Github repo to `.zshrc` with `zadd`. Plugins are automatically inst
 zadd zsh-users/zsh-syntax-highlighting
 zadd zsh-users/zsh-completions
 ```
+
+By default `µz` sources `init.zsh` or `plugin_name.(zsh|plugin.zsh|zsh-theme|sh)` but you can also specify another script to the `zadd` command as follows:
+
+
+```zsh
+zadd username/repo script_name
+```
+
 ### Manage Plugins
 
 - `zclean`: removes plugins no longer in `.zshrc`.
@@ -42,7 +50,7 @@ zadd zsh-users/zsh-completions
 
 ### Installation Path
 
-By default plugins are installed into `~/${UZ_PATH}/plugins`. This behavior can be changed setting `UZ_PLUGIN_PATH`.
+By default plugins are installed into `~/${UZ_PATH}/plugins`. This behavior can be changed re-setting `UZ_PLUGIN_PATH`.
 
 ```zsh
 export UZ_PLUGIN_PATH=${UZ_PATH}/plugins # default
@@ -54,11 +62,10 @@ export UZ_PLUGIN_PATH=${UZ_PATH}/plugins # default
 # ~/.zshrc
 source ~/.uz/uz.zsh
 
-# Plugins
-zadd zimfw/history
+zadd maxdrorigo/gitster
+zadd maxrodrigo/zsh-kubernetes-contexts
 zadd zsh-users/zsh-syntax-highlighting
 zadd zsh-users/zsh-history-substring-search
-zadd zsh-users/zsh-autosuggestions
 zadd zsh-users/zsh-completions
 ```
 
@@ -76,7 +83,6 @@ To uninstall remove the installation directory (`$UZ_PATH`) and the modules fold
 ## Other Notes
 
 ### Updating benchmark
-
 
 ```sh
 ls -d ${UZ_PLUGIN_PATH}/*/.git

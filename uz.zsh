@@ -15,7 +15,7 @@ zadd() {
 
   local zscripts=(${zpath}/(init.zsh|${zmodule:t}.(zsh|plugin.zsh|zsh-theme|sh))(NOL[1]))
   if [[ -f ${zscripts} ]]; then source ${zscripts}
-  else echo -e "\e[1;31mNo scripts was found for:\e[0m \e[3m${zmodule}\e[0m"
+  else echo -e "\e[1;31mNo scripts was found for:\e[0m \e[3m${zurl}\e[0m"
   fi
 }
 

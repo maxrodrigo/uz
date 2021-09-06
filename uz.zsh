@@ -9,6 +9,7 @@ zadd() {
 
   if [[ ! -d ${zpath} ]]; then
     mkdir -p ${zpath}
+    echo -ne "\e[1;32m${zmodule}: \e[0m"
     git clone --recursive https://github.com/${zurl}.git ${zpath}
   fi
 
@@ -18,7 +19,8 @@ zadd() {
 
 zupdate() {
   for p in $(ls -d ${UZ_PLUGIN_PATH}/*/.git); do
-    echo -e "\e[1;32m${${p%/*}:t}:\e[0m $(git -C ${p%/*} pull)"
+    echo -ne "\e[1;32m${${p%/*}:t}: \e[0m"
+    echo -e "\r\033[0K$(git -C ${p%/*} pull)"
   done
 }
 

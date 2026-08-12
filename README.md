@@ -94,3 +94,17 @@ find $UZ_PLUGIN_PATH -type d -name .git -prune
 find $UZ_PLUGIN_PATH -type d -exec test -e '{}/.git' \; -print0
 0.19s user 0.09s system 100% cpu 0.286 total
 ```
+
+### Compile benchmark
+
+`zadd` compiles each sourced script to bytecode (`.zwc`) via `zcompile`, so
+every following shell loads it instead of re-parsing text. Sourcing
+`zsh-autosuggestions.zsh` (867 lines) 500 times, with and without its `.zwc`:
+
+```sh
+source zsh-autosuggestions.zsh # with .zwc
+0.06s user 0.03s system 99% cpu 0.092 total
+
+source zsh-autosuggestions.zsh # without .zwc
+0.25s user 0.07s system 99% cpu 0.315 total
+```

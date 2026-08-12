@@ -14,8 +14,11 @@ zadd() {
   fi
 
   local zscripts=(${zpath}/(init.zsh|${zmodule:t}.(zsh|plugin.zsh|zsh-theme|sh))(NOL[1]))
-  if    [[ -f ${zpath}/${zscript} ]]; then source ${zpath}/${zscript}
-  elif  [[ -f ${zscripts} ]]; then source ${zscripts}
+  local zfile=${zpath}/${zscript}
+  [[ -f ${zfile} ]] || zfile=${zscripts}
+  if    [[ -f ${zfile} ]]; then
+    source ${zfile}
+    [[ ${zfile}.zwc -nt ${zfile} ]] || zcompile -R ${zfile}
   else  echo -e "\e[1;31mNo scripts was found for:\e[0m \e[3m${zurl}\e[0m"
   fi
 }

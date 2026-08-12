@@ -4,12 +4,19 @@ typeset -a UZ_PLUGINS
 
 zadd() {
   local zmodule=${1:t} zurl=${1} zscript=${2}
-  local zpath=${UZ_PLUGIN_PATH}/${zmodule}
+  local zpath=${UZ_PLUGIN_PATH}/${zurl}
+  local zlegacy=${UZ_PLUGIN_PATH}/${zmodule}
   UZ_PLUGINS+=("${zpath}")
+
+  if [[ ! -d ${zpath} && -d ${zlegacy} ]]; then
+    echo -e "\e[1;36mMigrating:\e[0m \e[3m${zmodule} -> ${zurl}\e[0m"
+    mkdir -p ${zpath:h}
+    mv ${zlegacy} ${zpath}
+  fi
 
   if [[ ! -d ${zpath} ]]; then
     mkdir -p ${zpath}
-    echo -ne "\e[1;32m${zmodule}: \e[0m"
+    echo -ne "\e[1;32m${zurl}: \e[0m"
     git clone --recursive https://github.com/${zurl}.git ${zpath}
   fi
 
@@ -24,16 +31,17 @@ zadd() {
 }
 
 zupdate() {
-  for p in ${UZ_PLUGIN_PATH}/*/.git(N); do
+  for p in ${UZ_PLUGIN_PATH}/*/*/.git(N); do
     echo -ne "\e[1;32m${${p%/*}:t}: \e[0m"
     echo -e "\r\033[0K$(git -C ${p%/*} pull)"
   done
 }
 
 zclean() {
-  for p in ${UZ_PLUGIN_PATH}/*(N); do
+  for p in ${UZ_PLUGIN_PATH}/*/*(N); do
     (( ${UZ_PLUGINS[(Ie)${p}]} )) && continue
     echo -e "\e[1;33mCleaning:\e[0m \e[3m${p}\e[0m"
     rm -rI $p
   done
+  for p in ${UZ_PLUGIN_PATH}/*(N/^F); do rmdir $p; done
 }

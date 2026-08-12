@@ -52,6 +52,12 @@ zadd username/repo script_name
 
 By default plugins are installed into `~/${UZ_PATH}/plugins`. This behavior can be changed re-setting `UZ_PLUGIN_PATH`.
 
+Plugins are namespaced by owner (`${UZ_PLUGIN_PATH}/owner/repo`), so two
+different forks of the same repo name never collide. Upgrading from an
+older `μz` that installed plugins flat (`${UZ_PLUGIN_PATH}/repo`) migrates
+each one automatically on its next `zadd` — no re-clone, existing `.git`
+history and compiled `.zwc` are kept.
+
 ```zsh
 export UZ_PLUGIN_PATH=${UZ_PATH}/plugins # default
 ```

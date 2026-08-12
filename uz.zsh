@@ -1,18 +1,21 @@
 typeset UZ_PATH=${0:A:h}
-typeset UZ_PLUGIN_PATH=${UZ_PLUGIN_PATH:-${UZ_PATH}/plugins}
+typeset UZ_PLUGIN_PATH=${UZ_PLUGIN_PATH:-${XDG_DATA_HOME:-${HOME}/.local/share}/uz/plugins}
 typeset -a UZ_PLUGINS
 
 zadd() {
   local zmodule=${1:t} zurl=${1} zscript=${2}
   local zpath=${UZ_PLUGIN_PATH}/${zurl}
-  local zlegacy=${UZ_PLUGIN_PATH}/${zmodule}
+  local zlegacy
+  for zlegacy in ${UZ_PLUGIN_PATH}/${zmodule} ${UZ_PATH}/plugins/${zurl} ${UZ_PATH}/plugins/${zmodule}; do
+    if [[ ! -d ${zpath} && -d ${zlegacy} ]]; then
+      echo -e "\e[1;36mMigrating:\e[0m \e[3m${zlegacy} -> ${zpath}\e[0m"
+      mkdir -p ${zpath:h}
+      mv ${zlegacy} ${zpath}
+      rmdir ${zlegacy:h} 2>/dev/null
+      break
+    fi
+  done
   UZ_PLUGINS+=("${zpath}")
-
-  if [[ ! -d ${zpath} && -d ${zlegacy} ]]; then
-    echo -e "\e[1;36mMigrating:\e[0m \e[3m${zmodule} -> ${zurl}\e[0m"
-    mkdir -p ${zpath:h}
-    mv ${zlegacy} ${zpath}
-  fi
 
   if [[ ! -d ${zpath} ]]; then
     mkdir -p ${zpath}

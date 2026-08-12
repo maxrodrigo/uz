@@ -134,6 +134,18 @@ ZDOTDIR=$PWD/test zsh -i
 First run clones the plugins listed in `test/.zshrc`; edit that file to add
 more. Delete `test/plugins` to start clean.
 
+### Releasing
+
+```sh
+make release
+```
+
+Tags and pushes a new version, then points the [Homebrew formula](#homebrew)
+at it — downloads the tag's tarball, recomputes its checksum, and pushes the
+update straight to `maxrodrigo/tap`. No CI, no per-platform builds; `uz` is
+one portable script. Run `make brew VERSION=vX.Y.Z` alone to repoint the
+formula without cutting a new release.
+
 ### Updating benchmark
 
 ```sh

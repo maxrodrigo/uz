@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y zsh
+      - run: zsh -n uz.zsh
+      - run: zsh -n test/.zshrc
+      - run: ZDOTDIR=$PWD/test zsh -i -c 'zupdate; zclean; exit'

@@ -11,6 +11,7 @@
 ```
 
 ![GitHub file size in bytes](https://img.shields.io/github/size/maxrodrigo/uz/uz.zsh?color=green&label=uz.zsh&logo=uz.zsh%20size&style=flat-square)
+![CI](https://img.shields.io/github/actions/workflow/status/maxrodrigo/uz/ci.yml?branch=master&style=flat-square&label=CI)
 
 ## Installation
 

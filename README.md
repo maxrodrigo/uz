@@ -15,6 +15,8 @@
 
 ## Installation
 
+### Git
+
 Clone from GitHub and source `uz.zsh`.
 
 ```sh
@@ -25,6 +27,21 @@ git clone https://github.com/maxrodrigo/uz.git ~/.uz
 # ~/.zshrc
 source ~/.uz/uz.zsh
 ```
+
+To update, `git -C ~/.uz pull`.
+
+### Homebrew
+
+```sh
+brew install maxrodrigo/uz/uz
+```
+
+```zsh
+# ~/.zshrc
+source $(brew --prefix)/share/uz/uz.zsh
+```
+
+To update, `brew upgrade uz`.
 
 ## Usage
 
@@ -86,9 +103,21 @@ zadd zsh-users/zsh-completions
 
 ## Uninstall
 
+### Git
+
 `μz` only creates folders for the cloned modules and, by default, are self contained into the installation directory.
 
 To uninstall remove the installation directory (`$UZ_PATH`) and the modules folder (`$UZ_PLUGIN_PATH`) if applicable.
+
+### Homebrew
+
+```sh
+brew uninstall uz
+```
+
+Plugins live outside the formula's install directory (see [Installation
+Path](#installation-path)), so uninstalling doesn't remove them; delete
+`$UZ_PLUGIN_PATH` too if applicable.
 
 ## Other Notes
 

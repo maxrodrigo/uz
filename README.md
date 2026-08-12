@@ -33,7 +33,7 @@ To update, `git -C ~/.uz pull`.
 ### Homebrew
 
 ```sh
-brew install maxrodrigo/uz/uz
+brew install maxrodrigo/tap/uz
 ```
 
 ```zsh

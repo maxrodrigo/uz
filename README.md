@@ -82,6 +82,19 @@ To uninstall remove the installation directory (`$UZ_PATH`) and the modules fold
 
 ## Other Notes
 
+### Testing
+
+`test/.zshrc` sources this repo's own `uz.zsh` into an isolated
+`UZ_PLUGIN_PATH` (`test/plugins`, gitignored), so changes can be verified
+without touching your real dotfiles:
+
+```sh
+ZDOTDIR=$PWD/test zsh -i
+```
+
+First run clones the plugins listed in `test/.zshrc`; edit that file to add
+more. Delete `test/plugins` to start clean.
+
 ### Updating benchmark
 
 ```sh

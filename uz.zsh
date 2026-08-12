@@ -24,14 +24,15 @@ zadd() {
 }
 
 zupdate() {
-  for p in $(ls -d ${UZ_PLUGIN_PATH}/*/.git); do
+  for p in ${UZ_PLUGIN_PATH}/*/.git(N); do
     echo -ne "\e[1;32m${${p%/*}:t}: \e[0m"
     echo -e "\r\033[0K$(git -C ${p%/*} pull)"
   done
 }
 
 zclean() {
-  for p in $(comm -23 <(ls -1d ${UZ_PLUGIN_PATH}/* | sort) <(printf '%s\n' $UZ_PLUGINS | sort)); do
+  for p in ${UZ_PLUGIN_PATH}/*(N); do
+    (( ${UZ_PLUGINS[(Ie)${p}]} )) && continue
     echo -e "\e[1;33mCleaning:\e[0m \e[3m${p}\e[0m"
     rm -rI $p
   done

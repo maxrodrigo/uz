@@ -1,13 +1,12 @@
 ```txt
- /$$   /$$ /$$$$$$$$
-| $$  | $$|____ /$$/
-| $$  | $$   /$$$$/
-| $$  | $$  /$$__/
-| $$$$$$$/ /$$$$$$$$  zsh micro plugin manager
-| $$____/ |________/
-| $$
-| $$
- \_$
+ ▒██▒   ░██▓  ▓▓▓▓▓████░
+ ▒██▒   ░██▓     ░▓██▓░
+ ▒██▒   ░██▓    ▓███░
+ ▒██▓   ▓██▓  ▒███▒░░░░
+ ▒█████████▓ ▒█████████▓ zsh micro plugin manager
+ ▒██▒░░░░░░  ░░░░░░░░░░
+ ▒██▒
+  ░░░
 ```
 
 ![GitHub file size in bytes](https://img.shields.io/github/size/maxrodrigo/uz/uz.zsh?color=green&label=uz.zsh&logo=uz.zsh%20size&style=flat-square)
@@ -55,7 +54,6 @@ zadd zsh-users/zsh-completions
 ```
 
 By default `µz` sources `init.zsh` or `plugin_name.(zsh|plugin.zsh|zsh-theme|sh)` but you can also specify another script to the `zadd` command as follows:
-
 
 ```zsh
 zadd username/repo script_name

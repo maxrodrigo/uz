@@ -27,7 +27,7 @@ git clone https://github.com/maxrodrigo/uz.git ~/.uz
 source ~/.uz/uz.zsh
 ```
 
-To update, `git -C ~/.uz pull`.
+To update, `zupdate` (or manually, `git -C ~/.uz pull`).
 
 ### Homebrew
 

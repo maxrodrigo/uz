@@ -34,6 +34,10 @@ zadd() {
 }
 
 zupdate() {
+  if [[ -d ${UZ_PATH}/.git ]]; then
+    echo -ne "\e[1;32muz: \e[0m"
+    echo -e "\r\033[0K$(git -C ${UZ_PATH} pull)"
+  fi
   for p in ${UZ_PLUGIN_PATH}/*/*/.git(N); do
     echo -ne "\e[1;32m${${p%/*}:t}: \e[0m"
     echo -e "\r\033[0K$(git -C ${p%/*} pull)"
